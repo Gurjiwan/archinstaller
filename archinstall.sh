@@ -30,6 +30,7 @@ if [[ ${usepartvar} == N ]];then
     if [[ ${customvar3} == No ]];then continue else mount --mkdir ${customvar3} /mnt/efi fi
     if [[ ${customvar4} == No ]];then continue else mount --mkdir ${customvar4} /mnt/home fi
 else
-   ./partition.sh 
+    scriptpart=${pwd}/partition.sh
+    command ${scriptpart}
 fi
 
