@@ -38,7 +38,6 @@ if [[ ${usepartvar} == N ]];then
 	mount --mkdir ${customvar4} /mnt/home
     fi
 else
-    scriptpart=${pwd}/partition.sh
-    command ${scriptpart}
+    command ./${pwd}/partition.sh
 fi
 

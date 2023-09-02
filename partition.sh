@@ -14,6 +14,7 @@ n
 1
 
 +512M
+Y
 t
 1
 w
@@ -27,6 +28,7 @@ if [[ ${swapsizevar} != 0 ]];then
     2
 
     +${swapsizevar}M
+    Y
     t
     2
     19
@@ -43,10 +45,11 @@ n
 
 
 
+Y
 w
 FDISK_root
 
-cryptsetup luksFormat ${root}
+command cryptsetup luksFormat ${root}
 cryptsetup open ${rootvar} linuxfs
 
 mkfs.btrfs /dev/mapper/linuxfs
