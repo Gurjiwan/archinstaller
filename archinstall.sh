@@ -27,8 +27,16 @@ if [[ ${usepartvar} == N ]];then
 	mkswap ${customvar2}
 	swapon ${customvar2}
     fi
-    if [[ ${customvar3} == No ]];then continue else mount --mkdir ${customvar3} /mnt/efi fi
-    if [[ ${customvar4} == No ]];then continue else mount --mkdir ${customvar4} /mnt/home fi
+    if [[ ${customvar3} == No ]];then
+	break
+    else
+	mount --mkdir ${customvar3} /mnt/efi
+    fi
+    if [[ ${customvar4} == No ]];then
+	break
+    else
+	mount --mkdir ${customvar4} /mnt/home
+    fi
 else
     scriptpart=${pwd}/partition.sh
     command ${scriptpart}
