@@ -38,6 +38,7 @@ FDISK_swap
     mkswap ${customvar}2
 else
     rootvar=${customvar}2
+    swapon ${customvar}2
 fi
 
 fdisk ${customvar} <<FDISK_root
@@ -49,7 +50,7 @@ Y
 w
 FDISK_root
 
-command cryptsetup luksFormat ${root}
+cryptsetup luksFormat ${rootvar}
 cryptsetup open ${rootvar} linuxfs
 
 mkfs.btrfs /dev/mapper/linuxfs
@@ -58,4 +59,18 @@ btrfs subvolume create /mnt/@root
 btrfs subvolume create /mnt/@home
 umount /mnt
 
+mount /dev/mapper/linuxfs -o subvol=@root /mnt
+mkdir /mnt/home
+mount /dev/mapper/linuxfs -o subvol=@home /mnt/home
+mkdir /mnt/efi
+mount ${customvar}1 /mnt/efi
+
+pacstrap -K /mnt base linux linux-firmware linux-headers linux-lts linux-lts-headers neovim base-devel git openssh networkmanager cryptsetup sbctl dnsutils exfatprogs ntfs-3g btrfs-progs gnupg pass flatpak
+
+
+
+umount /mnt/efi
+umount /mnt/home
+umount /mnt
+cryptsetup close /dev/mapper/linuxfs
 printf "Partition script end .. \n"
