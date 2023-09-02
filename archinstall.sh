@@ -21,12 +21,14 @@ if [[ ${usepartvar} == N ]];then
     fi
 
     printf "Note: Please make sure the partitions except swap are already formatted \n"
-    if [[ ${customvar2} =! No ]];then
+    if [[ ${customvar2} == No ]];then
+	continue
+    else
 	mkswap ${customvar2}
 	swapon ${customvar2}
     fi
-    if [[ ${customvar3} != No ]];then mount --mkdir ${customvar3} /mnt/efi fi
-    if [[ ${customvar4} != No ]];then mount --mkdir ${customvar4} /mnt/home fi
+    if [[ ${customvar3} == No ]];then continue else mount --mkdir ${customvar3} /mnt/efi fi
+    if [[ ${customvar4} == No ]];then continue else mount --mkdir ${customvar4} /mnt/home fi
 else
    ./partition.sh 
 fi
