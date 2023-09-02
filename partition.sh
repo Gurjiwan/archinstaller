@@ -6,6 +6,8 @@ swapsizevar=${swapsizevar:-0}
 
 sgdisk -Z ${customvar} # ZAP the hardrive to remove any cerated partition
 
+rootvar=${customvar}3
+
 fdisk ${customvar} <<FDISK_Input
 g
 n
@@ -32,6 +34,8 @@ if [[ ${swapsizevar} != 0 ]];then
 FDISK_swap
     
     mkswap ${customvar}2
+else
+    rootvar=${customvar}2
 fi
 
 fdisk ${customvar} <<FDISK_root
@@ -41,5 +45,14 @@ n
 
 w
 FDISK_root
+
+cryptsetup luksFormat ${root}
+cryptsetup open ${rootvar} linuxfs
+
+mkfs.btrfs /dev/mapper/linuxfs
+mount /dev/mapper/linuxfs /mnt
+btrfs subvolume create /mnt/@root
+btrfs subvolume create /mnt/@home
+umount /mnt
 
 printf "Partition script end .. \n"
