@@ -12,12 +12,12 @@ n
 1
 
 +512M
-
 t
 1
-
 w
 FDISK_Input
+
+mkfs.fat -F 32 ${customvar}1
 
 if [[ swapsizevar != 0 ]];then
     fdisk ${customvar} <<FDISK_swap
@@ -25,13 +25,13 @@ if [[ swapsizevar != 0 ]];then
     2
 
     +${swapsizevar}M
-
     t
     2
     19
-
     w
 FDISK_swap
+    
+    mkswap ${customvar}2
 fi
 
 fdisk ${customvar} <<FDISK_root
@@ -39,8 +39,7 @@ n
 
 
 
-
 w
 FDISK_root
 
-print "Partition script end .. \n"
+printf "Partition script end .. \n"
