@@ -19,7 +19,7 @@ FDISK_Input
 
 mkfs.fat -F 32 ${customvar}1
 
-if [[ swapsizevar != 0 ]];then
+if [[ ${swapsizevar} != 0 ]];then
     fdisk ${customvar} <<FDISK_swap
     n
     2
