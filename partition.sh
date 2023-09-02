@@ -1,7 +1,7 @@
 #!/bin/bash
 
 read -p "Please select the device to partition (e.g. /dev/sda): " customvar
-read -p "Select a swap size in MiB (default: 0): " swapsizevar
+read -p "Select a swap disk size in MiB (default: 0): " swapsizevar
 swapsizevar=${swapsizevar:-0}
 
 sgdisk -Z ${customvar} # ZAP the hardrive to remove any cerated partition
@@ -65,10 +65,18 @@ mount /dev/mapper/linuxfs -o subvol=@home /mnt/home
 mkdir /mnt/efi
 mount ${customvar}1 /mnt/efi
 
-pacstrap -K /mnt base linux linux-firmware linux-headers linux-lts linux-lts-headers neovim base-devel git openssh networkmanager cryptsetup sbctl dnsutils exfatprogs ntfs-3g btrfs-progs gnupg pass flatpak
+pacstrap -K /mnt base linux linux-firmware linux-headers linux-lts linux-lts-headers neovim base-devel git cryptsetup lvm2 networkmanager sbctl
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt
+pacman -Syu 
+
+# pacman -S openssh dnsutils exfatprogs ntfs-3g btrfs-progs gnupg pass flatpak
+passwd
 
 
-
+command exit
 umount /mnt/efi
 umount /mnt/home
 umount /mnt
