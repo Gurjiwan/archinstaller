@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = *
+
+[Action]
+Description = Clearing pacman cache for older pkg installers ...
+When = PostTransaction
+Exec = /usr/bin/paccache -rk2
+Depends = pacman-contrib

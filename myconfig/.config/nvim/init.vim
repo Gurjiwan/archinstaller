@@ -13,7 +13,6 @@ set cursorline
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'preservim/nerdtree'
-Plug 'pineapplegiant/spaceduck', {'branch':'main'}
 Plug 'maxboisvert/vim-simple-complete'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'vim-airline/vim-airline'
@@ -29,15 +28,6 @@ let g:NERDTreeDirArrowExpandable ='>'
 let g:NERDTreeDirArrowCollapsible ='^'
 
 nnoremap <C-t> :NERDTreeToggle<CR>
-
-"set up spaceduck nvim theme
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    set termguicolors
-endif
-
-colorscheme spaceduck
 
 "set up markdown preview with normal mode key mapping and insert mode as well
 "ctr + s for markdown preview

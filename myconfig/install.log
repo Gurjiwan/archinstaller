@@ -1,0 +1,128 @@
+#installation log after installing archlinux#
+
+#Initial pacstrap system
+pacstrap -K base linux linux-firmware linux-headers base-devel neovim networkmanager grub efibootmgr cryptsetup lvm2
+
+#note need to include < encrypt lvm2 > hooks after block hook in mkinitcpio.conf and recreate intrafms images
+#requires /etc/default/grub to be configured with cryptdevice and root if needed and then install grub and create a grub config. Also enable grub theme
+#Enable NetworkManager using systemctl
+#nvim configs are on github first install plug and then place the required configs
+
+#pacman installs using pacman -S
+zsh #used for creating user and config is in github
+sudo #set sudoer as wheel after adding the new user to wheel group "EDITOR=nvim visudo"
+os-prober
+cups #enable cups.socket using systemctl
+man
+tldr
+git
+gnupg
+xdg-utils
+xdg-user-dirs
+openssh
+pass
+pass-otp
+plasma-desktop
+sddm
+xorg-xwayland
+xorg-xrandr
+dolphin
+konsole
+pipewire-pulse
+plasma-pa
+plasma-nm
+ufw
+plasma-browser-integration
+xdg-portal-kde
+libreoffice
+okular
+ark
+#ark dependency
+p7zip
+libunrar
+unrar
+lrzip
+lzop
+# ark end
+pacman-contrib
+#pass dependency
+dmenu <replaces plasma-pass>
+xdotool
+xclip
+wl-clipboard
+#pass ends
+zbar # allows to decode QR and barcodes
+mpv #config pending
+yt-dlp #config pending #pending dependency check
+
+#plasma packages
+bluedevil
+kde-gtk-config
+kgamma5
+kscreen
+kwayland-integration
+plasma-systemmonitor
+sddm-kcm
+plasma-thunderbolt
+plasma-systemmonitor
+khotkeys
+kinfocenter
+spectacle
+#plasma end
+
+xf86-video-amdgpu
+firefox
+steam # installed with vulkan-radeon drivers
+kate
+#dependency for paru
+bat
+#dependency end
+
+amd-ucode
+fwupd
+linux-firmware-qlogic
+
+xorg-xwininfo
+yad
+wget
+grub-theme-vimix
+##dolphin opt depends
+ffmpegthumbs
+kio-admin
+#dependency end
+
+pacutils
+htop
+inetutils
+bind
+cups-pdf
+terminus-font
+foomatic-db-engine
+foomatic-db
+foomatic-db-nonfree
+sane
+hplip
+rpcbind
+skanlite
+python-pyqt5
+print-manager
+yarn
+rhythmbox
+breeze-gtk
+fuse2 # dependency for protonup-qt-bin appimage aur version
+mangohud
+gamemode
+gamescope
+vim
+
+## AUR Packages ##
+paru # paru.conf updated
+wd719x-firmware
+upd72020x-fw
+ast-firmware
+aic94xx-firmware
+heroic-games-launcher-bin
+protonup-qt-bin
+##github packages
+https://github.com/subhra74/xdm
+download latest pre-release for xdm8 and use pacman -U path/to/file to install

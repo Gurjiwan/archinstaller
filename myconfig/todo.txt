@@ -1,0 +1,7 @@
+create a new repo for myarch to store all the updated config files
+
+setup dnsmasq for network manager and setup network manager 
+setup wifi hotspot
+setup apparmor or SELinux
+setup bluetooth
+setup noise cancellation in microphone
