@@ -1,0 +1,6 @@
+[user]
+	email = gurrjiwan@gmail.com
+	name = Gurjiwan Singh
+	signingkey = F09419E26DE7FF89E6537614E7783A7BB4BD5609
+[init]
+	defaultBranch = main
